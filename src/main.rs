@@ -5,10 +5,10 @@ use winit::{
     event_loop::{ControlFlow, EventLoop},
     window::WindowBuilder,
 };
-use std::{time::{
+use std::time::{
     Duration,
     SystemTime,
-}, alloc::System};
+};
 
 mod renderer;
 use renderer::Renderer;
