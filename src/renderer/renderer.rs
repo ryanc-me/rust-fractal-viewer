@@ -27,9 +27,9 @@ pub struct Renderer {
 }
 
 impl Renderer {
-    const DEFAULT_CAMERA_SCALE: f32 = 3.0;
-    const DEFAULT_CAMERA_ORIGIN: Complex = Complex { re: -0.5, im: 0.0 };
-    const DEFAULT_SHADER: &'static str = "./shaders/mandelbrot.wgsl";
+    pub const DEFAULT_CAMERA_SCALE: f32 = 3.0;
+    pub const DEFAULT_CAMERA_ORIGIN: Complex = Complex { re: -0.5, im: 0.0 };
+    pub const DEFAULT_SHADER: &'static str = "./shaders/mandelbrot.wgsl";
     const VERTICES: [Vertex; 6] = [
         Vertex { position: [-1.0, -1.0, 0.0] },
         Vertex { position: [ 1.0, -1.0, 0.0] },

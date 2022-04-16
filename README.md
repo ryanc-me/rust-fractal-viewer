@@ -13,8 +13,9 @@ cd rust-fractal-viewer
 cargo run
 ```
 
- * Click and drag to translate around the scene
+ * Right-click and drag to translate around the scene
  * Scroll in/out to zoom
+ * Left-click to reset zoom/translation
 
 
 <br />

@@ -9,7 +9,7 @@ use cgmath::Vector2;
 use std::time::Duration;
 use lerp::Lerp;
 use super::complex::Complex;
-
+use super::renderer::Renderer;
 
 #[derive(Debug, Clone, Copy, bytemuck::Pod, bytemuck::Zeroable)]
 #[repr(C)]
@@ -266,6 +266,11 @@ impl Camera {
                         // window.set_cursor_icon(winit::window::CursorIcon::Hand)
                         true
                     },
+                    (event::MouseButton::Right, event::ElementState::Pressed) => {
+                        self.set_origin(Renderer::DEFAULT_CAMERA_ORIGIN);
+                        self.set_zoom(1.0);
+                        true
+                    }
                     _ => false
                 }
             }
