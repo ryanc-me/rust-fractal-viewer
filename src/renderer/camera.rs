@@ -298,11 +298,6 @@ impl Camera {
         self.state.set_origin(origin);
     }
 
-    pub fn move_origin(&mut self, pixel_x: f32, pixel_y: f32) {
-        
-        self.state.move_origin(pixel_x, pixel_y);
-    }
-
     pub fn set_zoom(&mut self, zoom: f32) {
         //! Manually set the zoom level. Note that this *only* overrides
         //! the zoom float, it does not perform any centering logic. So,
