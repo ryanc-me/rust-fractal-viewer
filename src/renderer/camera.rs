@@ -112,7 +112,8 @@ impl CameraState {
         //! This differs from [Self::set_zoom] in that you can specify
         //! a zoom origin, and the function will attempt to keep that
         //! point on the screen stationary
-
+        
+        let mut offset_pre = self.pixel_to_point(x, y) - self.origin;
         if zoom_by > 0.0 {
             self.zoom *= 2.0;
         }
@@ -120,6 +121,8 @@ impl CameraState {
             self.zoom /= 2.0;
         }
         self.update_limits();
+        let mut offset_post = self.pixel_to_point(x, y) - self.origin;
+        self.set_origin(self.origin + (offset_pre - offset_post));
         self.redraw();
 
         //TODO: zoom such that (x, y)'s associated complex nums do not change
@@ -165,6 +168,15 @@ impl CameraState {
         );
 
         (min, max)
+    }
+
+    fn pixel_to_point(&self, x: f32, y: f32) -> Complex {
+        let w = self.max.re - self.min.re;
+        let h = self.min.im - self.max.im;
+        Complex {
+            re: self.min.re + x * w / self.width,
+            im: self.min.im - y * h / self.height,
+        }
     }
 }
 
@@ -225,7 +237,7 @@ impl Camera {
             WindowEvent::MouseWheel { delta, .. } => {
                 match delta {
                     event::MouseScrollDelta::LineDelta(_horizontal, vertical) => {
-                        self.zoom_at_point(self.state.width / 2.0, self.state.height / 2.0, *vertical);
+                        self.zoom_at_point(self.cursor_pos.x as f32, self.cursor_pos.y as f32, *vertical);
                         true
                     },
                     _ => false
