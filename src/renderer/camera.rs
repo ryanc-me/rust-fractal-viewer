@@ -94,14 +94,6 @@ impl CameraState {
         self.redraw();
     }
 
-    fn move_origin(&mut self, pixel_x: f32, pixel_y: f32) {
-        let new_origin = Complex::new(
-            self.origin.re + (self.min.re - self.max.re) / self.width * pixel_x,
-            self.origin.im + (self.min.im - self.max.im) / self.height * pixel_y,
-        );
-        self.set_origin(new_origin);
-    }
-
     fn set_zoom(&mut self, zoom: f32) {
         //! Manually set the zoom level. Note that this *only* overrides
         //! the zoom float, it does not perform any centering logic. So,
@@ -136,8 +128,7 @@ impl CameraState {
     }
 
     fn zoom_rect(&mut self, x: f32, y: f32, w: f32, h: f32) {
-
-        self.redraw();
+        unimplemented!();
     }
 
     fn redraw(&mut self) {
